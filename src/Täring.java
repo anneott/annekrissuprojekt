@@ -9,14 +9,14 @@ public class Täring{
     }
 
     //ühe viske suvaline tulemus
-    public int üksvise(){
+    public int üksVise(){
         int viskeTulemus = (int) (Math.random() * 6 + 1);
         return viskeTulemus;
     }
 
     public int täringuteSumma(){
-        int esimeneVise = üksvise();
-        int teineVise = üksvise();
+        int esimeneVise = üksVise();
+        int teineVise = üksVise();
         return esimeneVise + teineVise;
 
     }
