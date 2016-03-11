@@ -1,8 +1,12 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("TERE! JOUUUU ;::ÖÖAS");
-        System.out.println("tereeeee!!!");
-        System.out.println("TErvitaab kristiiiiiiiiiiina");
-        System.out.println("tereeeee");
+        Mängija mängija1 = new Mängija("Kristiina");
+
+        Täring mängija1täring = new Täring(0,0); //täringu algväärtus on 0
+
+        System.out.println("Esimese mängija nimi: " + mängija1);
+
+        System.out.println("Tema kahe täringu summa: " + mängija1täring.täringuteSumma());
+
     }
 }
