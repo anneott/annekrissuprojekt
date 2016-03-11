@@ -10,4 +10,3 @@ public class Mängija{
         return nimi;
     }
 
-}
