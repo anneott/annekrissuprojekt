@@ -44,7 +44,7 @@ public class Main {
         int punktideSumma2 = 0;
 
         for (int i = 1; i <= viseteArvInt; i++) {
-            JOptionPane.showMessageDialog(frame, "Veereta", "Täringu mäng", JOptionPane.PLAIN_MESSAGE);
+            
             System.out.println("Esimese mängija M1 nimi: " + mängija1);
             System.out.println("Tema kahe täringu summa: " + mängija1täring.täringuteSumma());
             System.out.println("Esimese mängija täringute korrutis " + mängija1täring.täringuteKorrutis());
