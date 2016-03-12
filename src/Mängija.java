@@ -1,6 +1,3 @@
-/**
- * Created by user on 11.03.2016.
- */
 public class Mängija {
     private String nimi;
 
@@ -10,6 +7,10 @@ public class Mängija {
     }
 
     public String toString() {
+        return nimi;
+    }
+
+    public String getNimi(){
         return nimi;
     }
 

@@ -15,14 +15,19 @@ public class Main {
         Täring mängija1täring = new Täring(0,0); //täringu algväärtus on 0
         Täring mängija2täring = new Täring(0,0);
 
-        System.out.println("Esimese mängija nimi: " + mängija1);
+        System.out.println("Esimese mängija M1 nimi: " + mängija1);
         System.out.println("Tema kahe täringu summa: " + mängija1täring.täringuteSumma());
+        System.out.println("Esimese mängija täringute korrutis " + mängija1täring.täringuteKorrutis());
 
-        System.out.println("Teise mängija nimi: " + mängija2);
+        System.out.println("Teise mängija M2 nimi: " + mängija2);
         System.out.println("Tema kahe täringu summa: " + mängija2täring.täringuteSumma());
+        System.out.println("Teise mängija täringute korrutis " + mängija2täring.täringuteKorrutis());
 
-        System.out.println("M1 täringute korrutis " + mängija1täring.täringuteKorrutis());
-        System.out.println("M2 täringute korrutis " + mängija2täring.täringuteKorrutis());
+        Punktid m1punktisumma = new Punktid(mängija1, mängija1täring);
+        System.out.println("Esimese mängija punktisumma: " + m1punktisumma.arvutaPunktid());
+
+        Punktid m2punktisumma = new Punktid(mängija1, mängija1täring);
+        System.out.println("Teise mängija punktisumma: " + m2punktisumma.arvutaPunktid());
 
     }
 }

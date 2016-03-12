@@ -14,10 +14,15 @@ public class Täring{
         return viskeTulemus;
     }
 
-    public int täringuteSumma(){
+    //visatud täringute väärtused
+    public void viska(){
         täring1 = üksVise();
         täring2 = üksVise();
         System.out.println("t1 = " + täring1 + " t2 = " + täring2);
+    }
+
+    public int täringuteSumma(){
+        viska();
         return täring1 + täring2;
     }
 
@@ -25,4 +30,11 @@ public class Täring{
         return täring1 * täring2;
     }
 
+    public int getTäring1() {
+        return täring1;
+    }
+
+    public int getTäring2() {
+        return täring2;
+    }
 }
