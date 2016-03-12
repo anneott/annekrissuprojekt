@@ -15,11 +15,14 @@ public class Täring{
     }
 
     public int täringuteSumma(){
-        int esimeneVise = üksVise();
-        int teineVise = üksVise();
-        return esimeneVise + teineVise;
-
+        täring1 = üksVise();
+        täring2 = üksVise();
+        System.out.println("t1 = " + täring1 + " t2 = " + täring2);
+        return täring1 + täring2;
     }
 
+    public int täringuteKorrutis(){
+        return täring1 * täring2;
+    }
 
 }

@@ -21,5 +21,8 @@ public class Main {
         System.out.println("Teise mängija nimi: " + mängija2);
         System.out.println("Tema kahe täringu summa: " + mängija2täring.täringuteSumma());
 
+        System.out.println("M1 täringute korrutis " + mängija1täring.täringuteKorrutis());
+        System.out.println("M2 täringute korrutis " + mängija2täring.täringuteKorrutis());
+
     }
 }
