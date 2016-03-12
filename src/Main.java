@@ -3,31 +3,67 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
-        String sisestatakse1 = JOptionPane.showInputDialog(null, "Sisestage esimese mängija nimi : ", "Täringu mäng",
+        String sisestus = JOptionPane.showInputDialog(null, "Sisestage esimese mängija nimi : ", "Täringu mäng",
                 JOptionPane.QUESTION_MESSAGE);
+        if (sisestus == null)
+            return; // katkestab programmi
+        Mängija mängija1 = new Mängija(sisestus);
 
-        String sisestatakse2 = JOptionPane.showInputDialog(null, "Sisestage teise mängija nimi : ", "Täringu mäng",
+        sisestus = JOptionPane.showInputDialog(null, "Sisestage teise mängija nimi : ", "Täringu mäng",
                 JOptionPane.QUESTION_MESSAGE);
+        if (sisestus == null)
+            return;
+        Mängija mängija2 = new Mängija(sisestus);
 
-        Mängija mängija1 = new Mängija(sisestatakse1);
-        Mängija mängija2 = new Mängija(sisestatakse2);
+        String viseteArv = "";
+        int viseteArvInt;
 
-        Täring mängija1täring = new Täring(0,0); //täringu algväärtus on 0
-        Täring mängija2täring = new Täring(0,0);
+        do {
+            viseteArv = JOptionPane.showInputDialog(null, "Sisestage visete arv (1-10) :", "Täringu mäng",
+                    JOptionPane.QUESTION_MESSAGE);
+            if (viseteArv == null || viseteArv.equals("")) // Stringe võib
+                // võrrelda ainult
+                // equaliga
+                return;
+            try { // Proovib kas sisestatud numbrit on võimalik int tüüpi
+                // muutujaks muuta.
+                viseteArvInt = Integer.parseInt(viseteArv);
+                if (viseteArvInt <= 10 && viseteArvInt > 0)
+                    break;
+            } catch (NumberFormatException e) { // Püüab vea kinni ja läheb
+                // uuesti küsima tänu while
+                // tsüklile.
+            }
+        } while (true);
 
-        System.out.println("Esimese mängija M1 nimi: " + mängija1);
-        System.out.println("Tema kahe täringu summa: " + mängija1täring.täringuteSumma());
-        System.out.println("Esimese mängija täringute korrutis " + mängija1täring.täringuteKorrutis());
+        Täring mängija1täring = new Täring();// 0, 0); // täringu algväärtus on
+        // 0
+        Täring mängija2täring = new Täring();// 0, 0);
 
-        System.out.println("Teise mängija M2 nimi: " + mängija2);
-        System.out.println("Tema kahe täringu summa: " + mängija2täring.täringuteSumma());
-        System.out.println("Teise mängija täringute korrutis " + mängija2täring.täringuteKorrutis());
+        int punktideSumma1 = 0;
+        int punktideSumma2 = 0;
 
-        Punktid m1punktisumma = new Punktid(mängija1, mängija1täring);
-        System.out.println("Esimese mängija punktisumma: " + m1punktisumma.arvutaPunktid());
+        for (int i = 1; i <= viseteArvInt; i++) {
+            System.out.println("Esimese mängija M1 nimi: " + mängija1);
+            System.out.println("Tema kahe täringu summa: " + mängija1täring.täringuteSumma());
+            System.out.println("Esimese mängija täringute korrutis " + mängija1täring.täringuteKorrutis());
 
-        Punktid m2punktisumma = new Punktid(mängija1, mängija1täring);
-        System.out.println("Teise mängija punktisumma: " + m2punktisumma.arvutaPunktid());
+            System.out.println("Teise mängija M2 nimi: " + mängija2);
+            System.out.println("Tema kahe täringu summa: " + mängija2täring.täringuteSumma());
+            System.out.println("Teise mängija täringute korrutis " + mängija2täring.täringuteKorrutis());
+
+            Punktid m1punktisumma = new Punktid(mängija1täring);
+            System.out.println("Esimese mängija punktisumma: " + m1punktisumma.arvutaPunktid());
+            punktideSumma1 += m1punktisumma.arvutaPunktid();
+
+            Punktid m2punktisumma = new Punktid(mängija2täring);
+            System.out.println("Teise mängija punktisumma: " + m2punktisumma.arvutaPunktid());
+            punktideSumma2 += m2punktisumma.arvutaPunktid();
+
+        }
+        System.out.println("MÄNG ON LÄBI !");
+        System.out.println(mängija1.getNimi()+ " punktisumma : " + punktideSumma1);
+        System.out.println(mängija2.getNimi()+ " punktisumma : " + punktideSumma2);
 
     }
 }

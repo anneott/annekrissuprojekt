@@ -1,32 +1,29 @@
+/**
+ * Created by user on 12.03.2016.
+ */
 public class Punktid {
 
-    private int vise1;
-    private int vise2;
-    private String nimi;
     private int punktisumma;
+    Täring mängijatäringud;
 
-    public Punktid(Mängija mängija, Täring mängijatäringud) {
-        vise1 = mängijatäringud.getTäring1();
-        vise2 = mängijatäringud.getTäring2();
-        nimi = mängija.getNimi();
+    public Punktid(Täring mängijatäringud) {
+        this.mängijatäringud = mängijatäringud;
     }
 
-    public int yatzy(){
-        if (vise1 == vise2){
+    private void yatzy(){
+        if (mängijatäringud.getTäring1() == mängijatäringud.getTäring2()){
             punktisumma += 10;
         }
-        return punktisumma;
     }
 
     //kui summa paaris liidab punkte, kui paaritu siis lahutab
-    public int summaOnPaarisVõiPaaritu(){
-        if ((vise1 + vise2) % 2 == 0){
+    private void summaOnPaarisVõiPaaritu(){
+        if ((mängijatäringud.getTäring1() + mängijatäringud.getTäring2()) % 2 == 0){
             punktisumma += 5;
         }
         else{
             punktisumma -= 4;
         }
-        return punktisumma;
     }
 
     public int arvutaPunktid(){
