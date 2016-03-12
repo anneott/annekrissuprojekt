@@ -44,6 +44,7 @@ public class Main {
         int punktideSumma2 = 0;
 
         for (int i = 1; i <= viseteArvInt; i++) {
+            JOptionPane.showMessageDialog(frame, "Veereta", "Täringu mäng", JOptionPane.PLAIN_MESSAGE);
             System.out.println("Esimese mängija M1 nimi: " + mängija1);
             System.out.println("Tema kahe täringu summa: " + mängija1täring.täringuteSumma());
             System.out.println("Esimese mängija täringute korrutis " + mängija1täring.täringuteKorrutis());
@@ -64,6 +65,9 @@ public class Main {
         System.out.println("MÄNG ON LÄBI !");
         System.out.println(mängija1.getNimi()+ " punktisumma : " + punktideSumma1);
         System.out.println(mängija2.getNimi()+ " punktisumma : " + punktideSumma2);
-
+        if (punktideSumma1 > punktideSumma2)
+            System.out.println("Võitja on : " + mängija1.getNimi());
+        if (punktideSumma1 < punktideSumma2)
+            System.out.println("Võitja on : " + mängija2.getNimi());
     }
 }
