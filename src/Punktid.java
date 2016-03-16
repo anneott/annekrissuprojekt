@@ -4,21 +4,21 @@
 public class Punktid {
 
     private int punktisumma;
-    Täring mängijatäringud;
+    Täringud täringud;
 
-    public Punktid(Täring mängijatäringud) {
-        this.mängijatäringud = mängijatäringud;
+    public Punktid(Täringud täringud) {
+        this.täringud = täringud;
     }
 
     private void yatzy(){
-        if (mängijatäringud.getTäring1() == mängijatäringud.getTäring2()){
+        if (täringud.täringudVõrduvad()){
             punktisumma += 10;
         }
     }
 
     //kui summa paaris liidab punkte, kui paaritu siis lahutab
     private void summaOnPaarisVõiPaaritu(){
-        if ((mängijatäringud.getTäring1() + mängijatäringud.getTäring2()) % 2 == 0){
+        if (täringud.täringuteSumma() % 2 == 0){
             punktisumma += 5;
         }
         else{
@@ -32,8 +32,8 @@ public class Punktid {
         return punktisumma;
     }
 
-    public String toString(){
-        return "Puntkid: " + punktisumma;
-    }
+//    public String toString(){
+//        return "Puntkid: " + punktisumma;
+//    }
 
 }

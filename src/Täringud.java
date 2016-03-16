@@ -1,4 +1,4 @@
-public class Täring{
+public class Täringud{
 
     private int täring1;
     private int täring2;
@@ -17,7 +17,6 @@ public class Täring{
     }
 
     public int täringuteSumma(){
-        viska();
         return täring1 + täring2;
     }
 
@@ -25,11 +24,15 @@ public class Täring{
         return täring1 * täring2;
     }
 
-    public int getTäring1() {
-        return täring1;
+    public boolean täringudVõrduvad(){
+        return täring1 == täring2;
     }
 
-    public int getTäring2() {
-        return täring2;
-    }
+//    public int getTäring1() {
+//        return täring1;
+//    }
+//
+//    public int getTäring2() {
+//        return täring2;
+//    }
 }
