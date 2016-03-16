@@ -18,7 +18,7 @@ public class Main {
         String viseteArv = "";
         int viseteArvInt;
 
-        //õpetus
+        // õpetus
         System.out.println("Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!");
         System.out.println("Voorude arvu saab ise valida");
         System.out.println("Kõige rohkem saab punkte visatest kaks täringut nii, et nende silmade arv oleks sama (+30)");
@@ -31,7 +31,7 @@ public class Main {
 
         do {
             viseteArv = JOptionPane.showInputDialog(null, "Sisestage visete arv (1-10) :", "Täringu mäng",
-                    JOptionPane.QUESTION_MESSAGE); //viseteArv on String tüüpi, sest ei osanud nii, et saaks kasti sisestada in tüüpi argumenti.
+                    JOptionPane.QUESTION_MESSAGE); //viseteArv on String tüüpi, sest ei osanud nii, et saaks kasti sisestada int tüüpi argumenti.
             if (viseteArv == null || viseteArv.equals("")) //Stringe võib võrrelda ainult equaliga.
                 return; //katkestab programmi, kui vajutatakse cancel või ei sisestata midagi.
             try { // Proovib kas sisestatud numbrit on võimalik int tüüpi muutujaks muuta.
@@ -39,7 +39,7 @@ public class Main {
                 if (viseteArvInt <= 10 && viseteArvInt > 0)
                     break; //kui visete arv sobib vahemikku, katkestame programmi.
             } catch (NumberFormatException e) { // Püüab vea kinni ja läheb uuesti küsima tänu while tsüklile.
-            }
+                 }
 
         } while (true);
 
@@ -59,6 +59,7 @@ public class Main {
 
             System.out.println("Teine mängija " + mängija2 + " viskab: ");
             mängija2.getTäringud().viska();
+
             //System.out.println("Tema kahe täringu summa: " + mängija2.getTäringud().täringuteSumma());
             //System.out.println("Teise mängija täringute korrutis " + mängija2.getTäringud().täringuteKorrutis());
 
@@ -84,8 +85,8 @@ public class Main {
         }
         else
             System.out.println("MÄNG ON LÄBI ! Jäite viiki. ");
+
         System.out.println(mängija1 + " punktisumma : " + punktideSumma1);
         System.out.println(mängija2 + " punktisumma : " + punktideSumma2);
-
     }
 }
