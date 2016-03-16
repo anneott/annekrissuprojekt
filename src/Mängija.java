@@ -16,8 +16,5 @@ public class Mängija {
         return täringud;
     }
 
-//	public String getNimi() {
-//		return nimi;
-//	}
 
 }
