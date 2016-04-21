@@ -52,20 +52,16 @@ public class Main {
         uusMäng.alustaMänguga(mängija1, mängija2);
 
 
-
         int summa1 = uusMäng.getPunktideSumma1();
         int summa2 = uusMäng.getPunktideSumma2();
-        //leiame võitja
-        if (summa1 > summa2){
-            System.out.println("MÄNG ON LÄBI ! " + mängija1 + " võitis.");
-        }
-        else if (summa2 > summa1){
-            System.out.println("MÄNG ON LÄBI ! " + mängija2 + " võitis.");
-        }
-        else
-            System.out.println("MÄNG ON LÄBI ! Jäite viiki. ");
+
+        Võitja võitja = new Võitja();
+
+        String võitjanimi = võitja.leiaVõitja(mängija1, mängija2,summa1, summa2);
 
         System.out.println(mängija1 + " punktisumma : " + summa1);
         System.out.println(mängija2 + " punktisumma : " + summa2);
+
+        System.out.println(võitjanimi);
     }
 }

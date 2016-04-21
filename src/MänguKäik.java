@@ -7,7 +7,6 @@ public class MänguKäik {
     private int punktideSumma2 = 0;
 
     public MänguKäik(int punktideSumma1, int viseteArvInt, int punktideSumma2) {
-       // this.viseteArv = viseteArv;
         this.punktideSumma1 = punktideSumma1;
         this.viseteArvInt = viseteArvInt;
         this.punktideSumma2 = punktideSumma2;
