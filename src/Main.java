@@ -15,8 +15,6 @@ public class Main {
             return;
         Mängija mängija2 = new Mängija(sisestus);
 
-        String viseteArv = "";
-        int viseteArvInt;
 
         // õpetus
         System.out.println("Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!");
@@ -29,13 +27,18 @@ public class Main {
         System.out.println("Või siis kui korrutis ei jagu mõne kolme astmega (-1)");
         System.out.println();
 
+
+
+
+
+        String viskeArvMängus;
         do {
-            viseteArv = JOptionPane.showInputDialog(null, "Sisestage visete arv (1-10) :", "Täringu mäng",
+            viskeArvMängus = JOptionPane.showInputDialog(null, "Sisestage visete arv (1-10) :", "Täringu mäng",
                     JOptionPane.QUESTION_MESSAGE); //viseteArv on String tüüpi, sest ei osanud nii, et saaks kasti sisestada int tüüpi argumenti.
-            if (viseteArv == null || viseteArv.equals("")) //Stringe võib võrrelda ainult equaliga.
+            if (viskeArvMängus == null || viskeArvMängus.equals("")) //Stringe võib võrrelda ainult equaliga.
                 return; //katkestab programmi, kui vajutatakse cancel või ei sisestata midagi.
             try { // Proovib kas sisestatud numbrit on võimalik int tüüpi muutujaks muuta.
-                viseteArvInt = Integer.parseInt(viseteArv);
+                int viseteArvInt = Integer.parseInt(viskeArvMängus);
                 if (viseteArvInt <= 10 && viseteArvInt > 0)
                     break; //kui visete arv sobib vahemikku, katkestame programmi.
             } catch (NumberFormatException e) { // Püüab vea kinni ja läheb uuesti küsima tänu while tsüklile.
@@ -43,50 +46,26 @@ public class Main {
 
         } while (true);
 
-        int punktideSumma1 = 0;
-        int punktideSumma2 = 0;
 
-        for (int i = 1; i <= viseteArvInt; i++) { //Mäng käib seni, kuni sisestatud visete arv saab otsa.
-            JOptionPane.showMessageDialog(null, "Veereta", "Täringu mäng", JOptionPane.PLAIN_MESSAGE);
+        MänguKäik uusMäng = new MänguKäik(0,Integer.parseInt(viskeArvMängus),0);
 
-
-            System.out.println("Esimese mängija " + mängija1 + " viskab: ");
-            mängija1.getTäringud().viska(); //kõigepealt võtame mängija alt täringu ja sealt suunatakse edasi klassi Täring, kus sooritatakse meetod viska()
-
-            //System.out.println("Tema kahe täringu summa: " + mängija1.getTäringud().täringuteSumma());
-            //System.out.println("Esimese mängija täringute korrutis " + mängija1.getTäringud().täringuteKorrutis());
+        uusMäng.alustaMänguga(mängija1, mängija2);
 
 
-            System.out.println("Teine mängija " + mängija2 + " viskab: ");
-            mängija2.getTäringud().viska();
 
-            //System.out.println("Tema kahe täringu summa: " + mängija2.getTäringud().täringuteSumma());
-            //System.out.println("Teise mängija täringute korrutis " + mängija2.getTäringud().täringuteKorrutis());
-
-            System.out.println();
-
-            Punktid punktisumma = new Punktid(mängija1.getTäringud()); //loome klassi punktid punktisumma isendi, mis saab ette täringu väärtused
-            System.out.println("Vaheseis: " + mängija1 + " punktisumma: " + punktisumma.arvutaPunktid()); //väljastab vaheseisu (palju punkte kellelgi on)
-            punktideSumma1 += (punktisumma.arvutaPunktid())/2; //pean jagama kahegi, et tuleks õige vastus, millegi pärast ??
-
-            punktisumma = new Punktid(mängija2.getTäringud());
-            System.out.println("Vaheseis: " + mängija2 + " punktisumma: " + punktisumma.arvutaPunktid());
-            punktideSumma2 += (punktisumma.arvutaPunktid())/2;
-
-            System.out.println(i + " ring läbi");
-            System.out.println();
-
-        }
-        if (punktideSumma1 > punktideSumma2){
+        int summa1 = uusMäng.getPunktideSumma1();
+        int summa2 = uusMäng.getPunktideSumma2();
+        //leiame võitja
+        if (summa1 > summa2){
             System.out.println("MÄNG ON LÄBI ! " + mängija1 + " võitis.");
         }
-        else if (punktideSumma2 > punktideSumma1){
+        else if (summa2 > summa1){
             System.out.println("MÄNG ON LÄBI ! " + mängija2 + " võitis.");
         }
         else
             System.out.println("MÄNG ON LÄBI ! Jäite viiki. ");
 
-        System.out.println(mängija1 + " punktisumma : " + punktideSumma1);
-        System.out.println(mängija2 + " punktisumma : " + punktideSumma2);
+        System.out.println(mängija1 + " punktisumma : " + summa1);
+        System.out.println(mängija2 + " punktisumma : " + summa2);
     }
 }
