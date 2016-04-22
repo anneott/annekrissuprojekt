@@ -5,8 +5,7 @@ public class Täringud{
 
     //ühe viske suvaline tulemus
     public int üksVise(){
-        int viskeTulemus = (int) (Math.random() * 6 + 1);
-        return viskeTulemus;
+        return (int) (Math.random() * 6 + 1);
     }
 
     //visatud täringute väärtused
@@ -28,11 +27,4 @@ public class Täringud{
         return täring1 == täring2;
     }
 
-//    public int getTäring1() {
-//        return täring1;
-//    }
-//
-//    public int getTäring2() {
-//        return täring2;
-//    }
 }

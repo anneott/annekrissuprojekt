@@ -68,6 +68,8 @@ public class Main extends Application {
         GridPane.setConstraints(cancel, 1, 2);
         grid.getChildren().add(cancel);
 
+
+
         submit.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 // kui kõik väljad pole täidetud, siis ei luba mängu alustada
@@ -91,26 +93,29 @@ public class Main extends Application {
                     });
                 }
 
+
+                MänguKäik uusMäng;
+                //int summa1 = 1;
+                //int summa2 = 1;
+
                 try { // Proovib kas sisestatud numbrit on võimalik int tüüpi
                     // muutujaks muuta.
                     int viseteArvInt = Integer.parseInt(viskeArvMängus.getText());
-                    //OTSIB MILLEGI PÄRAST ENNE VÕITJAT, KUI ALUSATB MÄNGUGA !!
-                    MänguKäik uusMäng = new MänguKäik(0,viseteArvInt,0);
+
+                    uusMäng = new MänguKäik(0,viseteArvInt,0);
+
                     uusMäng.alustaMänguga(mängija1, mängija2, grid, peaLava);
 
-                    int summa1 = uusMäng.getPunktideSumma1();
-                    int summa2 = uusMäng.getPunktideSumma2();
+                    //summa1 = uusMäng.getPunktideSumma1();
+                    //summa2 = uusMäng.getPunktideSumma2();
 
-                    Võitja võitja = new Võitja();
+                   // uusMäng.isAegAvaldadaVõitjat() == true;
+                      /*  Võitja võitja = new Võitja();
+                        String võitjanimi = võitja.leiaVõitja(mängija1, mängija2, summa1, summa2);
 
-                    String võitjanimi = võitja.leiaVõitja(mängija1, mängija2,summa1, summa2);
+*/
 
-                    Stage uus = new Stage();
-                    String tekst = mängija1 + " punktisumma : " + summa1 + " ja " +mängija2 + " punktisumma : " + summa2 +". Võitja on : " + võitjanimi;
-                    Label label = new Label(tekst);
-                    Scene stseen2 = new Scene(label, 300, 100, Color.AQUAMARINE);
-                    uus.setScene(stseen2);
-                    uus.show();
+
 
                 } // kui visete arv sobib vahemikku, alustab mänguga.
                 catch (NumberFormatException e) { // Püüab vea kinni ja läheb
@@ -135,8 +140,13 @@ public class Main extends Application {
 
                 }
 
+
             }
+
+
         });
+
+        System.out.println("1");
 
         clear.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
@@ -145,12 +155,15 @@ public class Main extends Application {
                 viskeArvMängus.clear();
             }
         });
+
+        System.out.println("2");
         cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 peaLava.hide();
                 return; // peaks katkestama programmi siis
             }
         });
+        System.out.println("3");
 
 
 
@@ -160,5 +173,5 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+        }
     }
-}

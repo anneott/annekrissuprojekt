@@ -13,6 +13,7 @@ public class MänguKäik {
     private int punktideSumma1 = 0;
     private int punktideSumma2 = 0;
     private int clicks = 0;
+    private boolean aegAvaldadaVõitjat;
 
     public MänguKäik(int punktideSumma1, int viseteArvInt, int punktideSumma2) {
         this.punktideSumma1 = punktideSumma1;
@@ -24,7 +25,7 @@ public class MänguKäik {
         for (int i = 0; i <= viseteArvInt; i++)
             peaLava.hide();
         Stage uus = new Stage();
-        String tekst = null;
+        String tekst;
         tekst = "MÄNG KÄIB !!";
         Button nupp = new Button("Veereta"); // luuakse nupp
         // nupu paigutus annab soovida !!!
@@ -32,7 +33,7 @@ public class MänguKäik {
         Scene stseen2 = new Scene(label, 300, 100, Color.AQUAMARINE);
         uus.setScene(stseen2);
         uus.show();
-        for (int i = 1; i <= viseteArvInt; i++) { //Mäng käib seni, kuni sisestatud visete arv saab otsa.
+        for (int j = 1; j <= viseteArvInt; j++) { //Mäng käib seni, kuni sisestatud visete arv saab otsa.
             nupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 public void handle(MouseEvent me) {
                     clicks++;
@@ -57,21 +58,24 @@ public class MänguKäik {
                     punktisumma = new Punktid(mängija2.getTäringud());
                     System.out.println("Vaheseis: " + mängija2 + " punktisumma: " + punktisumma.arvutaPunktid());
                     punktideSumma2 += (punktisumma.arvutaPunktid()) / 2;
-                    if (clicks==viseteArvInt)
+                    if (clicks == viseteArvInt) {
                         uus.close();
+                        aegAvaldadaVõitjat = true; //nüüd on aeg võitja avaldada
+                        //probleemne koht, nüüd ta ei lähe enam peameetodis aegAvaldaVõitjat tõeväärtust küsida
+
+                        //KAS VÄGA HALB? et kuulutab võitja siin välja mitte peaklassis vms?
+                        Võitja võitja = new Võitja();
+                        String võitjanimi = võitja.leiaVõitja(mängija1, mängija2, getPunktideSumma1(), getPunktideSumma2());
+                        System.out.println(võitjanimi);
+
+                    }
                 }
             });
-            System.out.println(i + " ring läbi");
+
+            System.out.println(j + " ring läbi");
             System.out.println();
         }
-    }
 
-    public String getViseteArv() {
-        return viseteArv;
-    }
-
-    public int getViseteArvInt() {
-        return viseteArvInt;
     }
 
     public int getPunktideSumma1() {
@@ -81,4 +85,5 @@ public class MänguKäik {
     public int getPunktideSumma2() {
         return punktideSumma2;
     }
+
 }
