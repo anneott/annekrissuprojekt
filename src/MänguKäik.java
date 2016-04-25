@@ -24,7 +24,8 @@ public class MänguKäik {
     public void alustaMänguga(Mängija mängija1, Mängija mängija2, GridPane grid, Stage peaLava){
         for (int i = 0; i <= viseteArvInt; i++)
             peaLava.hide();
-        Stage uus = new Stage();
+        Stage uus = new Stage(); // stage Veeretuste jaoks
+
         String tekst;
         tekst = "MÄNG KÄIB !!";
         Button nupp = new Button("Veereta"); // luuakse nupp
@@ -33,31 +34,52 @@ public class MänguKäik {
         Scene stseen2 = new Scene(label, 300, 100, Color.AQUAMARINE);
         uus.setScene(stseen2);
         uus.show();
+
+
         for (int j = 1; j <= viseteArvInt; j++) { //Mäng käib seni, kuni sisestatud visete arv saab otsa.
             nupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 public void handle(MouseEvent me) {
                     clicks++;
-                    System.out.println("Esimese mängija " + mängija1 + " viskab: ");
-                    mängija1.getTäringud().viska(); //kõigepealt võtame mängija alt täringu ja sealt suunatakse edasi klassi Täring, kus sooritatakse meetod viska()
-                    //System.out.println("Tema kahe täringu summa: " + mängija1.getTäringud().täringuteSumma());
-                    //System.out.println("Esimese mängija täringute korrutis " + mängija1.getTäringud().täringuteKorrutis());
+
+                    Stage punktiLava = new Stage();
+                    String punktiTekst;
+                    Button nuppJätka = new Button("Jätka Mänguga");
+
+                    //paaritute klikkede arvuga on mängija1
+                    if (clicks % 2 == 1) {
+                        Punktid punktisumma = new Punktid(mängija1.getTäringud()); //loome klassi punktid punktisumma isendi, mis saab ette täringu väärtused
+                        punktiTekst = "Esimese mängija " + mängija1 + " viskab: " + "\n" +
+                                mängija1.getTäringud().viska() + "\n" +//kõigepealt võtame mängija alt täringu ja sealt suunatakse edasi klassi Täring, kus sooritatakse meetod viska()
+                                "Vaheseis: " + mängija1 + " punktisumma: " + punktisumma.arvutaPunktid(); //väljastab vaheseisu (palju punkte kellelgi on)
+                        punktideSumma1 += (punktisumma.arvutaPunktid()) / 2; //pean jagama kahegi, et tuleks õige vastus, millegi pärast ??
+                    }
+
+                    else {
+                        Punktid punktisumma = new Punktid(mängija2.getTäringud());
+                        punktiTekst = "Teine mängija " + mängija2 + " viskab: " + "\n" +
+                                mängija2.getTäringud().viska() + "\n" +
+                                "Vaheseis: " + mängija2 + " punktisumma: " + punktisumma.arvutaPunktid();
+                        punktideSumma2 += (punktisumma.arvutaPunktid()) / 2;
+
+                        System.out.println();
+                    }
+
+                    Label punktiLabel = new Label(punktiTekst, nuppJätka);
+
+                    Scene punktiStseen = new Scene(punktiLabel, 500, 200, Color.ALICEBLUE);
+
+                    //kui vajutad jätka, siis paneb akna kinni, et veeretuste aken lahti jääks
+                    nuppJätka.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        public void handle(MouseEvent me) {
+                            punktiLava.hide();
+                        }
+                    });
 
 
-                    System.out.println("Teine mängija " + mängija2 + " viskab: ");
-                    mängija2.getTäringud().viska();
+                    punktiLava.setScene(punktiStseen);
+                    punktiLava.show();
 
-                    //System.out.println("Tema kahe täringu summa: " + mängija2.getTäringud().täringuteSumma());
-                    //System.out.println("Teise mängija täringute korrutis " + mängija2.getTäringud().täringuteKorrutis());
-
-                    System.out.println();
-
-                    Punktid punktisumma = new Punktid(mängija1.getTäringud()); //loome klassi punktid punktisumma isendi, mis saab ette täringu väärtused
-                    System.out.println("Vaheseis: " + mängija1 + " punktisumma: " + punktisumma.arvutaPunktid()); //väljastab vaheseisu (palju punkte kellelgi on)
-                    punktideSumma1 += (punktisumma.arvutaPunktid()) / 2; //pean jagama kahegi, et tuleks õige vastus, millegi pärast ??
-
-                    punktisumma = new Punktid(mängija2.getTäringud());
-                    System.out.println("Vaheseis: " + mängija2 + " punktisumma: " + punktisumma.arvutaPunktid());
-                    punktideSumma2 += (punktisumma.arvutaPunktid()) / 2;
+                    //kui nupule on klikitud nii mitu korda, kui alguses määratud, siis kuulutab välja võitja
                     if (clicks == viseteArvInt) {
                         uus.close();
                         aegAvaldadaVõitjat = true; //nüüd on aeg võitja avaldada

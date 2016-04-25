@@ -36,6 +36,7 @@ public class Main extends Application {
         grid.getChildren().add(mängijanr1);
 
         Mängija mängija1 = new Mängija(mängijanr1.getText());
+        System.out.println("mängija1" + mängijanr1.toString() + "accsesible"  + mängijanr1.getAccessibleText());
 
         // Teise mängija nime kast
         final TextField mängijanr2 = new TextField();
@@ -95,26 +96,14 @@ public class Main extends Application {
 
 
                 MänguKäik uusMäng;
-                //int summa1 = 1;
-                //int summa2 = 1;
 
                 try { // Proovib kas sisestatud numbrit on võimalik int tüüpi
                     // muutujaks muuta.
-                    int viseteArvInt = Integer.parseInt(viskeArvMängus.getText());
+                    int viseteArvInt = Integer.parseInt(viskeArvMängus.getText()) * 2;
 
                     uusMäng = new MänguKäik(0,viseteArvInt,0);
 
                     uusMäng.alustaMänguga(mängija1, mängija2, grid, peaLava);
-
-                    //summa1 = uusMäng.getPunktideSumma1();
-                    //summa2 = uusMäng.getPunktideSumma2();
-
-                   // uusMäng.isAegAvaldadaVõitjat() == true;
-                      /*  Võitja võitja = new Võitja();
-                        String võitjanimi = võitja.leiaVõitja(mängija1, mängija2, summa1, summa2);
-
-*/
-
 
 
                 } // kui visete arv sobib vahemikku, alustab mänguga.
@@ -160,7 +149,7 @@ public class Main extends Application {
         cancel.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 peaLava.hide();
-                return; // peaks katkestama programmi siis
+                // peaks katkestama programmi siis
             }
         });
         System.out.println("3");

@@ -9,10 +9,10 @@ public class Täringud{
     }
 
     //visatud täringute väärtused
-    public void viska(){
+    public String viska(){
         täring1 = üksVise();
         täring2 = üksVise();
-        System.out.println("Esimese täringu väärtus = " + täring1 + " Teise tärinug väärtus = " + täring2);
+        return "Esimese täringu väärtus = " + täring1 + " Teise tärinug väärtus = " + täring2;
     }
 
     public int täringuteSumma(){

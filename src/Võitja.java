@@ -18,7 +18,7 @@ public class Võitja {
         }
         else if (summa2 > summa1) {
             võitja = mängija2.getNimi();
-            tekst = mängija1.getNimi() + " punktisumma : " + summa1 + " ja " + mängija2 + " punktisumma : " + summa2 + ". Võitja on : " + võitja;
+            tekst = mängija1.getNimi() + "punktisumma : " + summa1 + " ja " + mängija2 + " punktisumma : " + summa2 + ". Võitja on : " + võitja;
         }
         else {
             võitja = "puudub";
