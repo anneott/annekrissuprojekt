@@ -1,5 +1,4 @@
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -11,6 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class Main extends Application {
     public void start(Stage peaLava) {
@@ -30,26 +34,6 @@ public class Main extends Application {
     }
 
     public static Node tegevusEkraanil(GridPane grid, Stage peaLava) {
-        // Mängu alustamine
-        Stage uus = new Stage();
-        String tekst = null;
-        tekst = "Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!" + "\n"
-                + "Voorude arvu saab ise valida" + "\n"
-                + "Kõige rohkem saab punkte visatest kaks täringut nii, et nende silmade arv oleks sama (+30)" + "\n"
-                + "Punkte teenib ka siis kui täringute korrutis jagub mõne kolme astemga (vastavalt +3, +12, +20)"
-                + "\n" + "Või siis kui summa on paaris (+8)" + "\n" + "Või summa/ korrutis lõppeb nulliga (+15)" + "\n"
-                + "Punkte kaotab paaritu arvu viskamise eest (-4)" + "\n"
-                + "Või siis kui korrutis ei jagu mõne kolme astmega (-1)";
-        Button nupp = new Button("Alusta mänguga");
-        Label label = new Label(tekst, nupp);
-        Scene stseen2 = new Scene(label, 400, 500, Color.AQUAMARINE);
-        uus.setScene(stseen2);
-        uus.show();
-
-        nupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                uus.hide();
-
         // Esimese mängija nime kast
 
         final TextField mängijanr1 = new TextField();
@@ -57,13 +41,11 @@ public class Main extends Application {
         GridPane.setConstraints(mängijanr1, 0, 0);
         grid.getChildren().add(mängijanr1);
 
-
         // Teise mängija nime kast
         final TextField mängijanr2 = new TextField();
         mängijanr2.setPromptText("Teise mängija nimi");
         GridPane.setConstraints(mängijanr2, 0, 1);
         grid.getChildren().add(mängijanr2);
-
 
         // Visete arvu määramiseks kast
         final TextField viskeArvMängus = new TextField();
@@ -72,6 +54,12 @@ public class Main extends Application {
         viskeArvMängus.setPromptText("Visete arv");
         GridPane.setConstraints(viskeArvMängus, 0, 2);
         grid.getChildren().add(viskeArvMängus);
+
+        //faili kuhu kirjutab tulemuse, kast
+        final TextField failinimi = new TextField();
+        failinimi.setPromptText("Fail kuhu kirjutatakse tulemused");
+        GridPane.setConstraints(failinimi, 0, 3);
+        grid.getChildren().add(failinimi);
 
         // Alusta nupp
         Button submit = new Button("Alusta");
@@ -114,7 +102,43 @@ public class Main extends Application {
                 }
 
 
+
                 MänguKäik uusMäng;
+
+                //eeldame et kasutaja annab faili nime .txt-ga
+                //kontrollib, kas sisestatud fail on ikka .txt ja kas ta on ikkka tühi
+
+
+                    try {
+                        File fail = new File(failinimi.getText());
+                        fail.isFile();
+                        Scanner input = new Scanner(fail);
+
+                        if(!input.hasNext()){
+                            System.out.println("fail on tühi");
+                        }
+                    }
+                    catch (FileNotFoundException fnfe){
+
+                        peaLava.hide();
+                        Stage uus = new Stage();
+                        String tekst = null;
+                        tekst = "Visete arv peab olema täisarv";
+                        Button ok = new Button("Proovi uuesti"); // luuakse nupp
+                        // nupu paigutus annab soovida !!!
+                        Label label = new Label(tekst, ok);
+                        Scene stseen2 = new Scene(label, 300, 100, Color.AQUAMARINE);
+                        uus.setScene(stseen2);
+                        uus.show();
+                        ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            public void handle(MouseEvent me) {
+                                uus.hide();
+                                peaLava.show();
+                            }
+
+                        });
+                    }
+
 
                 try { // Proovib kas sisestatud numbrit on võimalik int tüüpi
                     // muutujaks muuta.
@@ -122,6 +146,7 @@ public class Main extends Application {
                     Mängija mängija2 = new Mängija(mängijanr2.getText());
 
                     int viseteArvInt = Integer.parseInt(viskeArvMängus.getText()) * 2;
+
 
                     uusMäng = new MänguKäik(0,viseteArvInt,0);
 
@@ -176,8 +201,7 @@ public class Main extends Application {
         });
         System.out.println("3");
 
-            }
-        });
+
 
         return grid;
 

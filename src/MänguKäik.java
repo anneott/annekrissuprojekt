@@ -52,6 +52,7 @@ public class MänguKäik {
                                 mängija1.getTäringud().viska() + "\n" +//kõigepealt võtame mängija alt täringu ja sealt suunatakse edasi klassi Täring, kus sooritatakse meetod viska()
                                 "Vaheseis: " + mängija1 + " punktisumma: " + punktisumma.arvutaPunktid(); //väljastab vaheseisu (palju punkte kellelgi on)
                         punktideSumma1 += (punktisumma.arvutaPunktid()) / 2; //pean jagama kahegi, et tuleks õige vastus, millegi pärast ??
+                        //punktiTekst.kirjutaFaili( );
                     }
 
                     else {
@@ -65,7 +66,6 @@ public class MänguKäik {
                     }
 
                     Label punktiLabel = new Label(punktiTekst, nuppJätka);
-
                     Scene punktiStseen = new Scene(punktiLabel, 500, 200, Color.ALICEBLUE);
 
                     //kui vajutad jätka, siis paneb akna kinni, et veeretuste aken lahti jääks
