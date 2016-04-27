@@ -31,6 +31,26 @@ public class Main extends Application {
     }
 
     public static Node tegevusEkraanil(GridPane grid, Stage peaLava) {
+        // Mängu alustamine
+        Stage uus = new Stage();
+        String tekst = null;
+        tekst = "Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!" + "\n"
+                + "Voorude arvu saab ise valida" + "\n"
+                + "Kõige rohkem saab punkte visatest kaks täringut nii, et nende silmade arv oleks sama (+30)" + "\n"
+                + "Punkte teenib ka siis kui täringute korrutis jagub mõne kolme astemga (vastavalt +3, +12, +20)"
+                + "\n" + "Või siis kui summa on paaris (+8)" + "\n" + "Või summa/ korrutis lõppeb nulliga (+15)" + "\n"
+                + "Punkte kaotab paaritu arvu viskamise eest (-4)" + "\n"
+                + "Või siis kui korrutis ei jagu mõne kolme astmega (-1)";
+        Button nupp = new Button("Alusta mänguga");
+        Label label = new Label(tekst, nupp);
+        Scene stseen2 = new Scene(label, 400, 500, Color.AQUAMARINE);
+        uus.setScene(stseen2);
+        uus.show();
+
+        nupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent me) {
+                uus.hide();
+
         // Esimese mängija nime kast
 
         final TextField mängijanr1 = new TextField();
@@ -157,7 +177,8 @@ public class Main extends Application {
         });
         System.out.println("3");
 
-
+            }
+        });
 
         return grid;
 
