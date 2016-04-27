@@ -1,4 +1,6 @@
+import com.sun.tools.classfile.TypeAnnotation;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -30,13 +32,12 @@ public class Main extends Application {
 
     public static Node tegevusEkraanil(GridPane grid, Stage peaLava) {
         // Esimese mängija nime kast
+
         final TextField mängijanr1 = new TextField();
         mängijanr1.setPromptText("Esimese mängija nimi");
         GridPane.setConstraints(mängijanr1, 0, 0);
         grid.getChildren().add(mängijanr1);
 
-        Mängija mängija1 = new Mängija(mängijanr1.getText());
-        System.out.println("mängija1" + mängijanr1.toString() + "accsesible"  + mängijanr1.getAccessibleText());
 
         // Teise mängija nime kast
         final TextField mängijanr2 = new TextField();
@@ -44,7 +45,6 @@ public class Main extends Application {
         GridPane.setConstraints(mängijanr2, 0, 1);
         grid.getChildren().add(mängijanr2);
 
-        Mängija mängija2 = new Mängija(mängijanr2.getText());
 
         // Visete arvu määramiseks kast
         final TextField viskeArvMängus = new TextField();
@@ -99,6 +99,9 @@ public class Main extends Application {
 
                 try { // Proovib kas sisestatud numbrit on võimalik int tüüpi
                     // muutujaks muuta.
+                    Mängija mängija1 = new Mängija(mängijanr1.getText());
+                    Mängija mängija2 = new Mängija(mängijanr2.getText());
+
                     int viseteArvInt = Integer.parseInt(viskeArvMängus.getText()) * 2;
 
                     uusMäng = new MänguKäik(0,viseteArvInt,0);
