@@ -8,32 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-/* MÄNGU ALGUSE KLASSIST
-//teeb ilusamaks kujunduse, aga  nupp ei tööta..
-Button nupp = new Button("Alusta mänguga");
-        juur.getChildren().add(nupp);
-
-        Label labelÕpetus = new Label(tekst);
-        juur.getChildren().add(labelÕpetus);
-
-        labelÕpetus.setAlignment(Pos.TOP_CENTER);
-        Scene stseen2 = new Scene(juur, 600, 300, Color.AQUAMARINE);
-
-        //nagu alguses
-        Button nupp = new Button("Alusta mänguga");
-
-
-        Label labelÕpetus = new Label(tekst);
-        //Label label = new Label(tekst, nupp);
-
-        labelÕpetus.setAlignment(Pos.TOP_CENTER);
-        Scene stseen2 = new Scene(labelÕpetus, 400, 500, Color.AQUAMARINE);
-
-        uus.setScene(stseen2);
-        uus.show();
-*/
 public class MänguKäik {
-    private String viseteArv = "";
     private int viseteArvInt;
     private int punktideSumma1 = 0;
     private int punktideSumma2 = 0;
@@ -50,13 +25,14 @@ public class MänguKäik {
         fail = new Fail(failinimi);
     }
 
+
     public void alustaMänguga(Mängija mängija1, Mängija mängija2, GridPane grid, Stage peaLava){
         for (int i = 0; i <= viseteArvInt; i++)
             peaLava.hide();
         Stage uus = new Stage(); // stage Veeretuste jaoks
 
         String tekst;
-        tekst = "MÄNG KÄIB !!";
+        tekst = "MÄNG KÄIB!!";
         Button nupp = new Button("Veereta"); // luuakse nupp
         // nupu paigutus annab soovida !!!
         Label label = new Label(tekst, nupp);//ilma tekstita ei saa

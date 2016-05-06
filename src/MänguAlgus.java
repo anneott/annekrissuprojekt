@@ -30,30 +30,14 @@ public class MänguAlgus {
         this.peaLava = peaLava;
     }
 
+
     public Node tegevusEkraanil() {
         // Mängu alustamine
-Group juur = new Group();
-
+        Group juur = new Group();
         Stage uus = new Stage();
 
-        Button nupp = new Button("Alusta mänguga");
-        nupp.setAlignment(Pos.BOTTOM_LEFT);
-        nupp.setLayoutX(100);
-        nupp.setLayoutY(230);
-        nupp.setTextFill(Color.FLORALWHITE);
-        nupp.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
-        nupp.setFont(Font.font ("Papyrus", 20));
-
-
-        Text tekst = new Text();
-        tekst.setText("\n"+"Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!" + "\n"
-                + "Voorude arvu saab ise valida" + "\n"
-                + "Kõige rohkem saab punkte visatest kaks täringut nii, et nende silmade arv oleks sama (+30)" + "\n"
-                + "Punkte teenib ka siis kui täringute korrutis jagub mõne kolme astemga (vastavalt +3, +12, +20)"
-                + "\n" + "Või siis kui summa on paaris (+8)" + "\n" + "Või summa/ korrutis lõppeb nulliga (+15)" + "\n"
-                + "Punkte kaotab paaritu arvu viskamise eest (-4)" + "\n"
-                + "Või siis kui korrutis ei jagu mõne kolme astmega (-1)");
-
+        Button nupp = teeNuppIlusaks();
+        Text tekst = teeÕpetusIlusaks();
 
         final Light.Distant light = new Light.Distant();
         light.setAzimuth(-135.0);
@@ -61,17 +45,7 @@ Group juur = new Group();
         lighting.setLight(light);
         lighting.setSurfaceScale(9.0);
         nupp.setEffect(lighting);
-
-        InnerShadow is = new InnerShadow();
-        is.setOffsetX(0.9f);
-        is.setOffsetY(0.5f);
-        tekst.setEffect(is);
         tekst.setEffect(lighting);
-
-        tekst.setLayoutX(100);
-        tekst.setFill(Color.DARKRED);
-        tekst.setFont(Font.font("Papyrus", 16));
-
 
         Scene stseen2 = new Scene(nupp, 800, 400, Color.LIGHTSEAGREEN);
 
@@ -109,7 +83,7 @@ Group juur = new Group();
 
                 //faili kuhu kirjutab tulemuse, kast
                 final TextField failinimi = new TextField();
-                failinimi.setPromptText("Tekitatava failinimi (.txt lõpuga!), kuhu punktid kirjutatakse");
+                failinimi.setPromptText("Tekitatava failinimi, kuhu punktid kirjutatakse"); //ei pea .txt lõpuga olema!
                 GridPane.setConstraints(failinimi, 0, 3);
                 grid.getChildren().add(failinimi);
 
@@ -221,5 +195,41 @@ Group juur = new Group();
         });
         return grid;
 
+    }
+
+
+    public Button teeNuppIlusaks(){
+        Button nupp = new Button("Alusta mänguga");
+        nupp.setAlignment(Pos.BOTTOM_LEFT);
+        nupp.setLayoutX(100);
+        nupp.setLayoutY(230);
+        nupp.setTextFill(Color.FLORALWHITE);
+        nupp.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+        nupp.setFont(Font.font ("Papyrus", 20));
+
+        return nupp;
+    }
+
+    public Text teeÕpetusIlusaks(){
+        Text tekst = new Text();
+        tekst.setText("\n"+"Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!" + "\n"
+                + "Voorude arvu saab ise valida" + "\n"
+                + "Kõige rohkem saab punkte visatest kaks täringut nii, et nende silmade arv oleks sama (+30)" + "\n"
+                + "Punkte teenib ka siis kui täringute korrutis jagub mõne kolme astemga (vastavalt +3, +12, +20)"
+                + "\n" + "Või siis kui summa on paaris (+8)" + "\n" + "Või summa/ korrutis lõppeb nulliga (+15)" + "\n"
+                + "Punkte kaotab paaritu arvu viskamise eest (-4)" + "\n"
+                + "Või siis kui korrutis ei jagu mõne kolme astmega (-1)");
+
+        InnerShadow is = new InnerShadow();
+        is.setOffsetX(0.9f);
+        is.setOffsetY(0.5f);
+
+        tekst.setEffect(is);
+
+        tekst.setLayoutX(100);
+        tekst.setFill(Color.DARKRED);
+        tekst.setFont(Font.font("Papyrus", 16));
+
+        return tekst;
     }
 }
