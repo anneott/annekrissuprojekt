@@ -1,7 +1,12 @@
+import java.io.IOException;
+
 public class Punktid {
 
     private int punktisumma;
-    Täringud täringud;
+    private Täringud täringud;
+    String failinimi;
+    Mängija mängija;
+    Fail fail;
 
     public Punktid(Täringud täringud) {
         this.täringud = täringud;
@@ -48,6 +53,7 @@ public class Punktid {
             punktisumma += 15;
         }
     }
+
     public int arvutaPunktid(){
         yatzy();
         summaOnPaarisVõiPaaritu();

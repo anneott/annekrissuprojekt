@@ -21,7 +21,7 @@ public class Võitja {
             tekst = mängija1.getNimi() + "punktisumma : " + summa1 + " ja " + mängija2 + " punktisumma : " + summa2 + ". Võitja on : " + võitja;
         }
         else {
-            võitja = "puudub";
+            võitja = "Võitja puudub";
             tekst = mängija1.getNimi() + " punktisumma : " + summa1 + " ja " + mängija2 + " punktisumma : " + summa2 + ". Mäng jäi viiki";
         }
 

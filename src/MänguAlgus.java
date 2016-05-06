@@ -26,7 +26,7 @@ public class MänguAlgus {
     public Node tegevusEkraanil() {
         // Mängu alustamine
         Stage uus = new Stage();
-        String tekst = null;
+        String tekst;
         tekst = "Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!" + "\n"
                 + "Voorude arvu saab ise valida" + "\n"
                 + "Kõige rohkem saab punkte visatest kaks täringut nii, et nende silmade arv oleks sama (+30)" + "\n"
@@ -66,7 +66,7 @@ public class MänguAlgus {
 
                 //faili kuhu kirjutab tulemuse, kast
                 final TextField failinimi = new TextField();
-                failinimi.setPromptText("Fail kuhu kirjutatakse tulemused");
+                failinimi.setPromptText("Tekitatava failinimi (.txt lõpuga!), kuhu punktid kirjutatakse");
                 GridPane.setConstraints(failinimi, 0, 3);
                 grid.getChildren().add(failinimi);
 
@@ -93,7 +93,7 @@ public class MänguAlgus {
                                 || viskeArvMängus.getText().trim().isEmpty()) {
                             peaLava.hide();
                             Stage uus = new Stage();
-                            String tekst = null;
+                            String tekst;
                             tekst = "Kõik väljad pole täidetud !";
                             Button ok = new Button("Proovi uuesti"); // luuakse nupp
                             // nupu paigutus annab soovida !!!
@@ -113,23 +113,19 @@ public class MänguAlgus {
                         MänguKäik uusMäng;
 
                         //eeldame et kasutaja annab faili nime .txt-ga
-                        //kontrollib, kas sisestatud fail on ikka .txt ja kas ta on ikkka tühi
+                        //kontrollib, kas sisestatud fail on ikka .txt
 
-
-                        try {
+                       /* try {
                             File fail = new File(failinimi.getText());
-                            fail.isFile();
+                            //fail.isFile();
                             Scanner input = new Scanner(fail);
 
-                            if (!input.hasNext()) {
-                                System.out.println("fail on tühi");
-                            }
                         } catch (FileNotFoundException fnfe) {
 
                             peaLava.hide();
                             Stage uus = new Stage();
                             String tekst = null;
-                            tekst = "Visete arv peab olema täisarv";
+                            tekst = "Ei leidnud faili, fail peab olema .txt";
                             Button ok = new Button("Proovi uuesti"); // luuakse nupp
                             // nupu paigutus annab soovida !!!
                             Label label = new Label(tekst, ok);
@@ -143,18 +139,19 @@ public class MänguAlgus {
                                 }
 
                             });
-                        }
+                        }*/
 
 
                         try { // Proovib kas sisestatud numbrit on võimalik int tüüpi
                             // muutujaks muuta.
                             Mängija mängija1 = new Mängija(mängijanr1.getText());
                             Mängija mängija2 = new Mängija(mängijanr2.getText());
+                            String failinimetus = failinimi.getText();
 
                             int viseteArvInt = Integer.parseInt(viskeArvMängus.getText()) * 2;
 
 
-                            uusMäng = new MänguKäik(0, viseteArvInt, 0);
+                            uusMäng = new MänguKäik(0, viseteArvInt, 0, failinimetus);
 
                             uusMäng.alustaMänguga(mängija1, mängija2, grid, peaLava);
 
@@ -164,7 +161,7 @@ public class MänguAlgus {
                             // peaakanasse tagasi
                             peaLava.hide();
                             Stage uus = new Stage();
-                            String tekst = null;
+                            String tekst;
                             tekst = "Visete arv peab olema täisarv";
                             Button ok = new Button("Proovi uuesti"); // luuakse nupp
                             // nupu paigutus annab soovida !!!

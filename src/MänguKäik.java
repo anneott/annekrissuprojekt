@@ -7,6 +7,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.IOException;
+
 public class MänguKäik {
     private String viseteArv = "";
     private int viseteArvInt;
@@ -14,11 +17,15 @@ public class MänguKäik {
     private int punktideSumma2 = 0;
     private int clicks = 0;
     private boolean aegAvaldadaVõitjat;
+    private Fail fail;
+    private String failinimi;
 
-    public MänguKäik(int punktideSumma1, int viseteArvInt, int punktideSumma2) {
+    public MänguKäik(int punktideSumma1, int viseteArvInt, int punktideSumma2, String failinimi) {
         this.punktideSumma1 = punktideSumma1;
         this.viseteArvInt = viseteArvInt;
         this.punktideSumma2 = punktideSumma2;
+        this.failinimi = failinimi;
+        fail = new Fail(failinimi);
     }
 
     public void alustaMänguga(Mängija mängija1, Mängija mängija2, GridPane grid, Stage peaLava){
@@ -51,6 +58,7 @@ public class MänguKäik {
                         punktiTekst = "Esimese mängija " + mängija1 + " viskab: " + "\n" +
                                 mängija1.getTäringud().viska() + "\n" +//kõigepealt võtame mängija alt täringu ja sealt suunatakse edasi klassi Täring, kus sooritatakse meetod viska()
                                 "Vaheseis: " + mängija1 + " punktisumma: " + punktisumma.arvutaPunktid(); //väljastab vaheseisu (palju punkte kellelgi on)
+
                         punktideSumma1 += (punktisumma.arvutaPunktid()) / 2; //pean jagama kahegi, et tuleks õige vastus, millegi pärast ??
                         //punktiTekst.kirjutaFaili( );
                     }
@@ -63,6 +71,13 @@ public class MänguKäik {
                         punktideSumma2 += (punktisumma.arvutaPunktid()) / 2;
 
                         System.out.println();
+                    }
+
+                    //kirjutan vaheseisu faili ehk punktiteksti
+                    try {
+                        fail.kirjutaPunktidFaili(punktiTekst, failinimi);
+                    } catch (IOException e) {
+                        System.out.println("Tekkis viga faili kirjutamisel! ");
                     }
 
                     Label punktiLabel = new Label(punktiTekst, nuppJätka);
@@ -90,6 +105,12 @@ public class MänguKäik {
                         String võitjanimi = võitja.leiaVõitja(mängija1, mängija2, getPunktideSumma1(), getPunktideSumma2());
                         System.out.println(võitjanimi);
 
+                        //kirjutan võitja faili
+                        try {
+                            fail.kirjutaPunktidFaili(võitjanimi, failinimi);
+                        } catch (IOException e) {
+                            System.out.println("ei saanud võitjat faili kirjutada");
+                        }
                     }
                 }
             });
