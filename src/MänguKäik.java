@@ -6,10 +6,32 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import java.io.File;
 import java.io.IOException;
 
+/* MÄNGU ALGUSE KLASSIST
+//teeb ilusamaks kujunduse, aga  nupp ei tööta..
+Button nupp = new Button("Alusta mänguga");
+        juur.getChildren().add(nupp);
+
+        Label labelÕpetus = new Label(tekst);
+        juur.getChildren().add(labelÕpetus);
+
+        labelÕpetus.setAlignment(Pos.TOP_CENTER);
+        Scene stseen2 = new Scene(juur, 600, 300, Color.AQUAMARINE);
+
+        //nagu alguses
+        Button nupp = new Button("Alusta mänguga");
+
+
+        Label labelÕpetus = new Label(tekst);
+        //Label label = new Label(tekst, nupp);
+
+        labelÕpetus.setAlignment(Pos.TOP_CENTER);
+        Scene stseen2 = new Scene(labelÕpetus, 400, 500, Color.AQUAMARINE);
+
+        uus.setScene(stseen2);
+        uus.show();
+*/
 public class MänguKäik {
     private String viseteArv = "";
     private int viseteArvInt;

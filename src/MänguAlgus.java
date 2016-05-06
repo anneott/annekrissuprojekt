@@ -1,17 +1,24 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import static javafx.scene.paint.Color.*;
 
 public class MänguAlgus {
     private GridPane grid;
@@ -25,20 +32,56 @@ public class MänguAlgus {
 
     public Node tegevusEkraanil() {
         // Mängu alustamine
+Group juur = new Group();
+
         Stage uus = new Stage();
-        String tekst;
-        tekst = "Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!" + "\n"
+
+        Button nupp = new Button("Alusta mänguga");
+        nupp.setAlignment(Pos.BOTTOM_LEFT);
+        nupp.setLayoutX(100);
+        nupp.setLayoutY(230);
+        nupp.setTextFill(Color.FLORALWHITE);
+        nupp.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+        nupp.setFont(Font.font ("Papyrus", 20));
+
+
+        Text tekst = new Text();
+        tekst.setText("\n"+"Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!" + "\n"
                 + "Voorude arvu saab ise valida" + "\n"
                 + "Kõige rohkem saab punkte visatest kaks täringut nii, et nende silmade arv oleks sama (+30)" + "\n"
                 + "Punkte teenib ka siis kui täringute korrutis jagub mõne kolme astemga (vastavalt +3, +12, +20)"
                 + "\n" + "Või siis kui summa on paaris (+8)" + "\n" + "Või summa/ korrutis lõppeb nulliga (+15)" + "\n"
                 + "Punkte kaotab paaritu arvu viskamise eest (-4)" + "\n"
-                + "Või siis kui korrutis ei jagu mõne kolme astmega (-1)";
-        Button nupp = new Button("Alusta mänguga");
-        Label label = new Label(tekst, nupp);
-        Scene stseen2 = new Scene(label, 400, 500, Color.AQUAMARINE);
+                + "Või siis kui korrutis ei jagu mõne kolme astmega (-1)");
+
+
+        final Light.Distant light = new Light.Distant();
+        light.setAzimuth(-135.0);
+        final Lighting lighting = new Lighting();
+        lighting.setLight(light);
+        lighting.setSurfaceScale(9.0);
+        nupp.setEffect(lighting);
+
+        InnerShadow is = new InnerShadow();
+        is.setOffsetX(0.9f);
+        is.setOffsetY(0.5f);
+        tekst.setEffect(is);
+        tekst.setEffect(lighting);
+
+        tekst.setLayoutX(100);
+        tekst.setFill(Color.DARKRED);
+        tekst.setFont(Font.font("Papyrus", 16));
+
+
+        Scene stseen2 = new Scene(nupp, 800, 400, Color.LIGHTSEAGREEN);
+
+        stseen2.setRoot(juur);
+        juur.getChildren().add(tekst);
+        juur.getChildren().add(nupp);
+
         uus.setScene(stseen2);
         uus.show();
+
 
         nupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
@@ -98,7 +141,7 @@ public class MänguAlgus {
                             Button ok = new Button("Proovi uuesti"); // luuakse nupp
                             // nupu paigutus annab soovida !!!
                             Label label = new Label(tekst, ok);
-                            Scene stseen2 = new Scene(label, 300, 100, Color.AQUAMARINE);
+                            Scene stseen2 = new Scene(label, 300, 100, AQUAMARINE);
                             uus.setScene(stseen2);
                             uus.show();
                             ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -111,36 +154,6 @@ public class MänguAlgus {
 
 
                         MänguKäik uusMäng;
-
-                        //eeldame et kasutaja annab faili nime .txt-ga
-                        //kontrollib, kas sisestatud fail on ikka .txt
-
-                       /* try {
-                            File fail = new File(failinimi.getText());
-                            //fail.isFile();
-                            Scanner input = new Scanner(fail);
-
-                        } catch (FileNotFoundException fnfe) {
-
-                            peaLava.hide();
-                            Stage uus = new Stage();
-                            String tekst = null;
-                            tekst = "Ei leidnud faili, fail peab olema .txt";
-                            Button ok = new Button("Proovi uuesti"); // luuakse nupp
-                            // nupu paigutus annab soovida !!!
-                            Label label = new Label(tekst, ok);
-                            Scene stseen2 = new Scene(label, 300, 100, Color.AQUAMARINE);
-                            uus.setScene(stseen2);
-                            uus.show();
-                            ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                                public void handle(MouseEvent me) {
-                                    uus.hide();
-                                    peaLava.show();
-                                }
-
-                            });
-                        }*/
-
 
                         try { // Proovib kas sisestatud numbrit on võimalik int tüüpi
                             // muutujaks muuta.
@@ -166,7 +179,7 @@ public class MänguAlgus {
                             Button ok = new Button("Proovi uuesti"); // luuakse nupp
                             // nupu paigutus annab soovida !!!
                             Label label = new Label(tekst, ok);
-                            Scene stseen2 = new Scene(label, 300, 100, Color.AQUAMARINE);
+                            Scene stseen2 = new Scene(label, 300, 100, AQUAMARINE);
                             uus.setScene(stseen2);
                             uus.show();
                             ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
