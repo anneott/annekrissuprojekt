@@ -30,13 +30,19 @@ public class MänguAlgus {
         this.peaLava = peaLava;
     }
 
+    public TextField teeTekstFieldIlusaks(TextField tf){
+        tf.setFont(Font.font("Papyrus", 20));
+        tf.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        return tf;
+    }
 
     public Node tegevusEkraanil() {
-        // Mängu alustamine
+        // Mängu alustamine //ESIMENE "EKRAAN"
         Group juur = new Group();
         Stage uus = new Stage();
 
-        Button nupp = teeNuppIlusaks();
+        Button nupp = teeAlguskuvaNuppIlusaks();
         Text tekst = teeÕpetusIlusaks();
 
         final Light.Distant light = new Light.Distant();
@@ -56,27 +62,38 @@ public class MänguAlgus {
         uus.setScene(stseen2);
         uus.show();
 
-
+        //TEINE "EKRAAN"
         nupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 uus.hide();
 
+                grid.setVgap(16);
+                grid.setHgap(7);
+                // teise ekraani "üldisi" seadeid saab muuta grid-i kaudu (nt taustavärv jne) kui ka Main klassis!!
+                grid.setBackground(new Background(new BackgroundFill(Color.LIGHTSEAGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
                 // Esimese mängija nime kast
                 final TextField mängijanr1 = new TextField();
                 mängijanr1.setPromptText("Esimese mängija nimi");
+                mängijanr1.setFont(Font.font("Papyrus", 21));
+                mängijanr1.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
                 GridPane.setConstraints(mängijanr1, 0, 0);
                 grid.getChildren().add(mängijanr1);
 
                 // Teise mängija nime kast
                 final TextField mängijanr2 = new TextField();
                 mängijanr2.setPromptText("Teise mängija nimi");
+                mängijanr2.setFont(Font.font("Papyrus", 21));
+                mängijanr2.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
                 GridPane.setConstraints(mängijanr2, 0, 1);
                 grid.getChildren().add(mängijanr2);
 
                 // Visete arvu määramiseks kast
                 final TextField viskeArvMängus = new TextField();
+                //TODO
                 // Hetke on visete arv piiramatu, peab veel kontrollima, et ei oleks
                 // NULL !!!!
+                viskeArvMängus.setFont(Font.font("Papyrus", 21));
+                viskeArvMängus.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
                 viskeArvMängus.setPromptText("Visete arv");
                 GridPane.setConstraints(viskeArvMängus, 0, 2);
                 grid.getChildren().add(viskeArvMängus);
@@ -84,22 +101,34 @@ public class MänguAlgus {
                 //faili kuhu kirjutab tulemuse, kast
                 final TextField failinimi = new TextField();
                 failinimi.setPromptText("Tekitatava failinimi, kuhu punktid kirjutatakse"); //ei pea .txt lõpuga olema!
+                failinimi.setFont(Font.font("Papyrus", 21));
+                failinimi.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
                 GridPane.setConstraints(failinimi, 0, 3);
                 grid.getChildren().add(failinimi);
 
                 // Alusta nupp
                 Button submit = new Button("Alusta");
-                GridPane.setConstraints(submit, 1, 0);
+                submit.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+                submit.setTextFill(Color.FLORALWHITE);
+                submit.setFont(Font.font("Papyrus", 21));
+                GridPane.setConstraints(submit, 3, 0);
                 grid.getChildren().add(submit);
 
                 // Puhasta nupp
                 Button clear = new Button("Puhasta");
-                GridPane.setConstraints(clear, 1, 1);
+                clear.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+                clear.setTextFill(Color.FLORALWHITE);
+                clear.setFont(Font.font("Papyrus", 21));
+                GridPane.setConstraints(clear, 3, 1);
                 grid.getChildren().add(clear);
+
 
                 // Cancel nupp
                 Button cancel = new Button("Lahku");
-                GridPane.setConstraints(cancel, 1, 2);
+                cancel.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+                cancel.setTextFill(Color.FLORALWHITE);
+                cancel.setFont(Font.font("Papyrus", 21));
+                GridPane.setConstraints(cancel, 3, 2);
                 grid.getChildren().add(cancel);
 
 
@@ -115,7 +144,7 @@ public class MänguAlgus {
                             Button ok = new Button("Proovi uuesti"); // luuakse nupp
                             // nupu paigutus annab soovida !!!
                             Label label = new Label(tekst, ok);
-                            Scene stseen2 = new Scene(label, 300, 100, AQUAMARINE);
+                            Scene stseen2 = new Scene(label, 500, 100, AQUAMARINE);
                             uus.setScene(stseen2);
                             uus.show();
                             ok.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -198,7 +227,7 @@ public class MänguAlgus {
     }
 
 
-    public Button teeNuppIlusaks(){
+    private Button teeAlguskuvaNuppIlusaks(){
         Button nupp = new Button("Alusta mänguga");
         nupp.setAlignment(Pos.BOTTOM_LEFT);
         nupp.setLayoutX(100);
@@ -210,7 +239,7 @@ public class MänguAlgus {
         return nupp;
     }
 
-    public Text teeÕpetusIlusaks(){
+    private Text teeÕpetusIlusaks(){
         Text tekst = new Text();
         tekst.setText("\n"+"Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!" + "\n"
                 + "Voorude arvu saab ise valida" + "\n"
