@@ -18,7 +18,7 @@ public class Main extends Application {
         //Teise ekraani suurus
         //TODO äkki siia listner??
         peaLava.setTitle("Täringumäng"); // lava tiitelribale pannakse tekst
-        Scene stseen1 = new Scene(grid, 450, 300, Color.LIGHTSEAGREEN);
+        Scene stseen1 = new Scene(grid, 450, 300, Color.AQUAMARINE);
         peaLava.setScene(stseen1);
         peaLava.show(); // lava tehakse nähtavaks
 
