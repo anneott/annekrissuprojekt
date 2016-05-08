@@ -1,10 +1,18 @@
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -27,16 +35,21 @@ public class MänguKäik {
 
 
     public void alustaMänguga(Mängija mängija1, Mängija mängija2, GridPane grid, Stage peaLava){
+        Group juur4 = new Group();
+
         for (int i = 0; i <= viseteArvInt; i++)
             peaLava.hide();
         Stage uus = new Stage(); // stage Veeretuste jaoks
 
-        String tekst;
-        tekst = "MÄNG KÄIB!!";
-        Button nupp = new Button("Veereta"); // luuakse nupp
-        // nupu paigutus annab soovida !!!
-        Label label = new Label(tekst, nupp);//ilma tekstita ei saa
-        Scene stseen2 = new Scene(label, 300, 100, Color.AQUAMARINE);
+        Text tekst = teeTekstIlusaks(new Text("Mäng käib!"), 10 , 30);
+        Button nupp = teeNuppIlusaks("Veereta",10,40); // luuakse nupp
+
+        Scene stseen2 = new Scene(nupp, 300, 100, Color.AQUAMARINE);
+
+        stseen2.setRoot(juur4);
+        juur4.getChildren().add(tekst);
+        juur4.getChildren().add(nupp);
+
         uus.setScene(stseen2);
         uus.show();
 
@@ -47,8 +60,10 @@ public class MänguKäik {
                     clicks++;
 
                     Stage punktiLava = new Stage();
+                    Group juur5 = new Group();
+
                     String punktiTekst;
-                    Button nuppJätka = new Button("Jätka Mänguga");
+                    Button nuppJätka = teeNuppIlusaks("Jätka Mänguga", 10, 80);
 
                     //paaritute klikkede arvuga on mängija1
                     if (clicks % 2 == 1) {
@@ -71,6 +86,7 @@ public class MänguKäik {
                         System.out.println();
                     }
 
+
                     //kirjutan vaheseisu faili ehk punktiteksti
                     try {
                         fail.kirjutaPunktidFaili(punktiTekst, failinimi);
@@ -78,8 +94,16 @@ public class MänguKäik {
                         System.out.println("Tekkis viga faili kirjutamisel! ");
                     }
 
-                    Label punktiLabel = new Label(punktiTekst, nuppJätka);
-                    Scene punktiStseen = new Scene(punktiLabel, 500, 200, Color.ALICEBLUE);
+
+                    Text tekstVaheseis = teeTekstIlusaks(new Text(punktiTekst), 10, 20);
+
+                    Scene punktiStseen = new Scene(nuppJätka, 500, 200, Color.AQUAMARINE);
+                    punktiStseen.setRoot(juur5);
+                    juur5.getChildren().add(tekstVaheseis);
+                    juur5.getChildren().add(nuppJätka);
+
+                    punktiLava.setScene(punktiStseen);
+                    punktiLava.show();
 
                     //kui vajutad jätka, siis paneb akna kinni, et veeretuste aken lahti jääks
                     nuppJätka.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -127,4 +151,29 @@ public class MänguKäik {
         return punktideSumma2;
     }
 
+
+    private Text teeTekstIlusaks(Text tekst, int xasukoht, int yasukoht){
+        InnerShadow is = new InnerShadow();
+        is.setOffsetX(0.9f);
+        is.setOffsetY(0.5f);
+        tekst.setEffect(is);
+        tekst.setLayoutX(xasukoht);
+        tekst.setLayoutY(yasukoht);
+        tekst.setFill(Color.DARKRED);
+        tekst.setFont(Font.font("Papyrus", 16));
+
+        return tekst;
+    }
+
+    private Button teeNuppIlusaks(String tekst, int xasukoht, int yasukoht){
+        Button nupp = new Button(tekst);
+        nupp.setAlignment(Pos.BOTTOM_LEFT);
+        nupp.setLayoutX(xasukoht);
+        nupp.setLayoutY(yasukoht);
+        nupp.setTextFill(Color.FLORALWHITE);
+        nupp.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+        nupp.setFont(Font.font ("Papyrus", 20));
+
+        return nupp;
+    }
 }
