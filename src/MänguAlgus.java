@@ -32,14 +32,14 @@ public class MänguAlgus {
         Group juur = new Group();
         Stage uus = new Stage();
 
-        Button nupp = teeNuppIlusaks("Alusta mänguga", 100, 230);
+        Button nupp = teeNuppIlusaks("Alusta mänguga", 80, 280);
         Text tekst = teeTekstIlusaks(new Text("\n"+"Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!" + "\n"
-                + "Voorude arvu saab ise valida" + "\n"
+                + "Voorude arvu saab ise valida!" + "\n"
                 + "Kõige rohkem saab punkte visatest kaks täringut nii, et nende silmade arv oleks sama (+30)" + "\n"
-                + "Punkte teenib ka siis kui täringute korrutis jagub mõne kolme astemga (vastavalt +3, +12, +20)"
-                + "\n" + "Või siis kui summa on paaris (+8)" + "\n" + "Või summa/ korrutis lõppeb nulliga (+15)" + "\n"
-                + "Punkte kaotab paaritu arvu viskamise eest (-4)" + "\n"
-                + "Või siis kui korrutis ei jagu mõne kolme astmega (-1)"), 100, 0);
+                + "Punkte teenib ka siis kui : \n    täringute korrutis jagub mõne kolme astemga (vastavalt +3, +12, +20)"
+                + "\n" + "   summa on paaris (+8)" + "\n" + "   summa/ korrutis lõppeb nulliga (+15)" + "\n"
+                + "Punkte kaotab: \n     paaritu arvu viskamise eest (-4)" + "\n"
+                + "     kui korrutis ei jagu mõne kolme astmega (-1)"), 80, 0);
 
         final Light.Distant light = new Light.Distant();
         light.setAzimuth(-135.0);
@@ -49,9 +49,11 @@ public class MänguAlgus {
         nupp.setEffect(lighting);
         tekst.setEffect(lighting);
 
-        Scene stseen2 = new Scene(nupp, 800, 400, Color.AQUAMARINE);
+        DropShadow vari = new DropShadow(0, Color.DARKRED);
+        tekst.setEffect(vari);
 
-        stseen2.setRoot(juur);
+        Scene stseen2 = new Scene(juur, 800, 400, Color.AQUAMARINE);
+
         juur.getChildren().add(tekst);
         juur.getChildren().add(nupp);
 
@@ -118,8 +120,8 @@ public class MänguAlgus {
                             Text tekst = teeTekstIlusaks(new Text("Kontrolli, et oled sisetanud mängijate nimed ja faili nime, kuhu soovid tulemused kirjutada!"), 10, 30);
                             Button ok = teeNuppIlusaks("Proovi uuesti", 10, 40); // luuakse nupp
 
-                            Scene stseen2 = new Scene(ok, 650, 100, Color.AQUAMARINE);
-                            stseen2.setRoot(juur2);
+                            Scene stseen2 = new Scene(juur2, 650, 100, Color.AQUAMARINE);
+
                             juur2.getChildren().add(ok);
                             juur2.getChildren().add(tekst);
                             uus.setScene(stseen2);
@@ -235,7 +237,7 @@ public class MänguAlgus {
         tekst.setLayoutY(yasukoht);
 
         tekst.setFill(Color.DARKRED);
-        tekst.setFont(Font.font("Papyrus", 16));
+        tekst.setFont(Font.font("Papyrus", 17));
 
         return tekst;
     }

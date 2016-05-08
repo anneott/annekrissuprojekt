@@ -44,9 +44,8 @@ public class MänguKäik {
         Text tekst = teeTekstIlusaks(new Text("Mäng käib!"), 10 , 30);
         Button nupp = teeNuppIlusaks("Veereta",10,40); // luuakse nupp
 
-        Scene stseen2 = new Scene(nupp, 300, 100, Color.AQUAMARINE);
+        Scene stseen2 = new Scene(juur4, 300, 100, Color.AQUAMARINE);
 
-        stseen2.setRoot(juur4);
         juur4.getChildren().add(tekst);
         juur4.getChildren().add(nupp);
 
@@ -105,6 +104,11 @@ public class MänguKäik {
                     punktiLava.setScene(punktiStseen);
                     punktiLava.show();
 
+
+                    punktiLava.setScene(punktiStseen);
+                    punktiLava.show();
+
+
                     //kui vajutad jätka, siis paneb akna kinni, et veeretuste aken lahti jääks
                     nuppJätka.setOnMouseClicked(new EventHandler<MouseEvent>() {
                         public void handle(MouseEvent me) {
@@ -113,11 +117,10 @@ public class MänguKäik {
                     });
 
 
-                    punktiLava.setScene(punktiStseen);
-                    punktiLava.show();
 
                     //kui nupule on klikitud nii mitu korda, kui alguses määratud, siis kuulutab välja võitja
                     if (clicks == viseteArvInt) {
+                        punktiLava.hide();
                         uus.close();
                         aegAvaldadaVõitjat = true; //nüüd on aeg võitja avaldada
                         //probleemne koht, nüüd ta ei lähe enam peameetodis aegAvaldaVõitjat tõeväärtust küsida
@@ -137,7 +140,6 @@ public class MänguKäik {
                 }
             });
 
-            System.out.println(j + " ring läbi");
             System.out.println();
         }
 
