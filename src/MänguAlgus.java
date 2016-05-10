@@ -37,7 +37,7 @@ public class MänguAlgus {
 
             Text tekst = teeTekstIlusaks(
                     new Text(
-                            "Kontrolli, et kõik väljad oleksid täidetud !"),
+                            "Kontrolli, et väljad oleksid täidetud !"),
                     10, 30);
             Button ok = teeNuppIlusaks("Proovi uuesti", 10, 40); // luuakse
             // nupp
@@ -71,7 +71,8 @@ public class MänguAlgus {
 
             MänguKäik uusMäng;
 
-
+            // TODO kui jätad ühe mängija nime panemata, siis IKKAGI alustab
+            // mänguga!!!!
             try { // Proovib kas sisestatud numbrit on võimalik int tüüpi
                 // muutujaks muuta.
                 Mängija mängija1 = new Mängija(mängijanr1.getText());
@@ -274,7 +275,7 @@ public class MänguAlgus {
 
     }
 
-    private Button teeNuppIlusaks(String tekst, int xasukoht, int yasukoht) {
+    public static Button teeNuppIlusaks(String tekst, int xasukoht, int yasukoht) {
         Button nupp = new Button(tekst);
         nupp.setAlignment(Pos.BOTTOM_LEFT);
         nupp.setLayoutX(xasukoht);
@@ -286,7 +287,7 @@ public class MänguAlgus {
         return nupp;
     }
 
-    private Text teeTekstIlusaks(Text tekst, int xasukoht, int yasukoht) {
+    public static Text teeTekstIlusaks(Text tekst, int xasukoht, int yasukoht) {
         InnerShadow is = new InnerShadow();
         is.setOffsetX(0.9f);
         is.setOffsetY(0.5f);
