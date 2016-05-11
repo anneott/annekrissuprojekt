@@ -1,3 +1,5 @@
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -6,6 +8,18 @@ import javafx.stage.Stage;
 
 public class Võitja {
 
+    public void võitjaVälja(String tekst, Scene võitjaStseen, Stage võitjaStage) {
+        Group juur6 = new Group();
+
+        int x = ((int) Math.round(võitjaStseen.getHeight()))-((int) Math.round(võitjaStseen.getHeight()))/2;
+        int y = ((int) Math.round(võitjaStseen.getHeight()))-((int) Math.round(võitjaStseen.getHeight()))/2;
+
+        Text võitjaTekst = MänguAlgus.teeTekstIlusaks(new Text(tekst), x, y);
+
+        võitjaStseen.setRoot(juur6);
+        juur6.getChildren().add(võitjaTekst);
+
+    }
 
     public String leiaVõitja(Mängija mängija1, Mängija mängija2, int summa1, int summa2) {
 
@@ -15,7 +29,7 @@ public class Võitja {
         Group juur6 = new Group();
         Stage võitjaStage = new Stage();
 
-        if (summa1 > summa2){
+        if (summa1 > summa2) {
             võitja = mängija1.getNimi();
         }
 
@@ -26,17 +40,26 @@ public class Võitja {
         else {
             võitja = "viik";
         }
-        tekst = mängija1.getNimi() + " punktisumma : " + summa1 + "  \n " +mängija2 + " punktisumma : " + summa2 +"  \n Võitja on : " + võitja;
-
-        Text võitjaTekst = MänguAlgus.teeTekstIlusaks(new Text(tekst), 80, 80);
+        tekst = mängija1.getNimi() + " punktisumma : " + summa1 + "  \n " + mängija2 + " punktisumma : " + summa2
+                + "  \n Võitja on : " + võitja;
 
         Scene võitjaStseen = new Scene(juur6, 400, 200, Color.AQUAMARINE);
 
-        võitjaStseen.setRoot(juur6);
-        juur6.getChildren().add(võitjaTekst);
+        võitjaVälja(tekst, võitjaStseen, võitjaStage);
+
+        võitjaStseen.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(final ObservableValue<? extends Number> observable, final Number oldValue,
+                                final Number newValue) {
+                võitjaVälja(tekst, võitjaStseen, võitjaStage);
+            }
+        });
+
+
 
         võitjaStage.setScene(võitjaStseen);
         võitjaStage.show();
+
         return võitja;
     }
 
