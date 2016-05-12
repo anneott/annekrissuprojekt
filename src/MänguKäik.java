@@ -135,7 +135,7 @@ public class MänguKäik {
             punktiLava.hide();
             uus.close();
 
-            //KAS VÄGA HALB? et kuulutab võitja siin välja mitte peaklassis vms?
+            //et kuulutab võitja siin välja mitte peaklassis vms?
             Võitja võitja = new Võitja();
             String võitjanimi = võitja.leiaVõitja(mängija1, mängija2, getPunktideSumma1(), getPunktideSumma2());
 

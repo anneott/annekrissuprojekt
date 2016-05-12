@@ -70,8 +70,6 @@ public class MänguAlgus {
         else{
 
             MänguKäik uusMäng;
-
-            // TODO kui jätad ühe mängija nime panemata, siis IKKAGI alustab
             // mänguga!!!!
             try { // Proovib kas sisestatud numbrit on võimalik int tüüpi
                 // muutujaks muuta.
@@ -127,7 +125,7 @@ public class MänguAlgus {
         }
     }
 
-    public void mänguKäik(Stage uus) {
+    public void alustaMänguga(Stage uus) {
         uus.hide();
 
         grid.setVgap(16);
@@ -181,7 +179,6 @@ public class MänguAlgus {
         grid.getChildren().add(cancel);
 
         submit.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            // TODO kui jätta tühjaks viseteArvu aken, siis annab kaks veateate
             // akent...
             public void handle(MouseEvent me) {
                 pealeAndmeteSisestamist(mängijanr1, mängijanr2, failinimi, viskeArvMängus);
@@ -256,7 +253,7 @@ public class MänguAlgus {
         // TEINE "EKRAAN"
         nupp.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                mänguKäik(uus);
+                alustaMänguga(uus);
             }
 
         });
@@ -266,7 +263,7 @@ public class MänguAlgus {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.ENTER) {
-                    mänguKäik(uus);
+                    alustaMänguga(uus);
                 }
             }
         });
@@ -282,7 +279,7 @@ public class MänguAlgus {
         nupp.setLayoutY(yasukoht);
         nupp.setTextFill(Color.FLORALWHITE);
         nupp.setBackground(new Background(new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
-        nupp.setFont(Font.font("Papyrus", 20));
+        nupp.setFont(Font.font("Segoe Print", 20));
 
         return nupp;
     }
@@ -298,7 +295,7 @@ public class MänguAlgus {
         tekst.setLayoutY(yasukoht);
 
         tekst.setFill(Color.DARKRED);
-        tekst.setFont(Font.font("Papyrus", 17));
+        tekst.setFont(Font.font("Segoe Print", 15));
 
         return tekst;
     }
@@ -306,7 +303,7 @@ public class MänguAlgus {
     private TextField teeTekstFieldIlusaks(String promttext) {
         TextField tf = new TextField();
         tf.setPromptText(promttext);
-        tf.setFont(Font.font("Papyrus", 21));
+        tf.setFont(Font.font("Segoe Print", 21));
         tf.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         return tf;
