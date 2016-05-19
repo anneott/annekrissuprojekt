@@ -3,6 +3,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.effect.Light;
+import javafx.scene.effect.Lighting;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -23,6 +25,13 @@ public class Võitja {
         Text võitjaTekst = MänguAlgus.teeTekstIlusaks(new Text(tekst), x, y);
         võitjaTekst.setFill(Color.DARKRED);
         võitjaTekst.setFont(Font.font("Segoe Print", FontWeight.EXTRA_BOLD, 21));
+
+        final Light.Distant light = new Light.Distant();
+        light.setAzimuth(-35.0);
+        final Lighting lighting = new Lighting();
+        lighting.setLight(light);
+        lighting.setSurfaceScale(99.0);
+        võitjaTekst.setEffect(lighting);
 
         võitjaStseen.setRoot(juur6);
         juur6.getChildren().add(võitjaTekst);
@@ -51,7 +60,7 @@ public class Võitja {
         tekst = mängija1.getNimi() + " punktisumma : " + summa1 + "  \n " + mängija2 + " punktisumma : " + summa2
                 + "  \n Võitja on : " + võitja;
 
-        Scene võitjaStseen = new Scene(juur6, 400, 200, Color.AQUAMARINE);
+        Scene võitjaStseen = new Scene(juur6, 500, 300, Color.AQUAMARINE);
 
         võitjaVälja(tekst, võitjaStseen, võitjaStage);
 

@@ -239,12 +239,13 @@ public class MänguAlgus {
         nimi.setFont(Font.font("Segoe Print", FontWeight.EXTRA_BOLD, 30));
 
         final Light.Distant light = new Light.Distant();
-        light.setAzimuth(-135.0);
+        light.setAzimuth(-35.0);
         final Lighting lighting = new Lighting();
         lighting.setLight(light);
-        lighting.setSurfaceScale(9.0);
+        lighting.setSurfaceScale(99.0);
+
         nupp.setEffect(lighting);
-        tekst.setEffect(lighting);
+       // tekst.setEffect(lighting);
         nimi.setEffect(lighting);
 
         DropShadow vari = new DropShadow(0, Color.DARKRED);
