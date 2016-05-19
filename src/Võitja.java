@@ -1,8 +1,14 @@
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -15,6 +21,8 @@ public class Võitja {
         int y = ((int) Math.round(võitjaStseen.getHeight()))-((int) Math.round(võitjaStseen.getHeight()))/2;
 
         Text võitjaTekst = MänguAlgus.teeTekstIlusaks(new Text(tekst), x, y);
+        võitjaTekst.setFill(Color.DARKRED);
+        võitjaTekst.setFont(Font.font("Segoe Print", FontWeight.EXTRA_BOLD, 21));
 
         võitjaStseen.setRoot(juur6);
         juur6.getChildren().add(võitjaTekst);

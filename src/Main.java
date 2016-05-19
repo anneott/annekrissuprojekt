@@ -16,7 +16,7 @@ public class Main extends Application {
         grid.setHgap(5);
 
         //Teise ekraani suurus
-        peaLava.setTitle("Täringumäng"); // lava tiitelribale pannakse tekst
+        peaLava.setTitle("NiceDiceMice"); // lava tiitelribale pannakse tekst
         Scene stseen1 = new Scene(grid, 450, 300, Color.AQUAMARINE);
         peaLava.setScene(stseen1);
         peaLava.show(); // lava tehakse nähtavaks

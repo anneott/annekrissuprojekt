@@ -16,6 +16,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -42,7 +43,7 @@ public class MänguAlgus {
             Button ok = teeNuppIlusaks("Proovi uuesti", 10, 40); // luuakse
             // nupp
 
-            Scene stseen2 = new Scene(juur2, 650, 100, Color.AQUAMARINE);
+            Scene stseen2 = new Scene(juur2, 300, 100, Color.AQUAMARINE);
 
             juur2.getChildren().add(ok);
             juur2.getChildren().add(tekst);
@@ -221,7 +222,7 @@ public class MänguAlgus {
         Group juur = new Group();
         Stage uus = new Stage();
 
-        Button nupp = teeNuppIlusaks("Alusta mänguga", 80, 280);
+        Button nupp = teeNuppIlusaks("Alusta mänguga", 80, 330);
         Text tekst = teeTekstIlusaks(new Text("\n"
                 + "Mängu eesmärgiks on võimalikult palju punkte koguda veeretades kahte täringut!" + "\n"
                 + "Voorude arvu saab ise valida!" + "\n"
@@ -229,7 +230,13 @@ public class MänguAlgus {
                 + "Punkte teenib ka siis kui : \n    täringute korrutis jagub mõne kolme astemga (vastavalt +3, +12, +20)"
                 + "\n" + "   summa on paaris (+8)" + "\n" + "   summa/ korrutis lõppeb nulliga (+15)" + "\n"
                 + "Punkte kaotab: \n     paaritu arvu viskamise eest (-4)" + "\n"
-                + "     kui korrutis ei jagu mõne kolme astmega (-1)"), 80, 0);
+                + "     kui korrutis ei jagu mõne kolme astmega (-1)"), 80, 50);
+
+        Text nimi = new Text("\n" +"NICEDICEMICE" );
+        nimi.setLayoutX(80);
+        nimi.setLayoutY(0);
+        nimi.setFill(Color.DARKRED);
+        nimi.setFont(Font.font("Segoe Print", FontWeight.EXTRA_BOLD, 30));
 
         final Light.Distant light = new Light.Distant();
         light.setAzimuth(-135.0);
@@ -238,6 +245,7 @@ public class MänguAlgus {
         lighting.setSurfaceScale(9.0);
         nupp.setEffect(lighting);
         tekst.setEffect(lighting);
+        nimi.setEffect(lighting);
 
         DropShadow vari = new DropShadow(0, Color.DARKRED);
         tekst.setEffect(vari);
@@ -245,6 +253,7 @@ public class MänguAlgus {
         Scene stseen2 = new Scene(juur, 800, 400, Color.AQUAMARINE);
 
         juur.getChildren().add(tekst);
+        juur.getChildren().add(nimi);
         juur.getChildren().add(nupp);
 
         uus.setScene(stseen2);

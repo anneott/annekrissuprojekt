@@ -110,7 +110,6 @@ public class MänguKäik {
         punktiLava.setScene(punktiStseen);
         punktiLava.show();
 
-
         //kui vajutad jätka, siis paneb akna kinni, et veeretuste aken lahti jääks
         nuppJätka.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {

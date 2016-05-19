@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class Fail implements AutoCloseable{
+public class Fail{
     private String failinimi;
     BufferedWriter bw;
 
@@ -12,11 +12,6 @@ public class Fail implements AutoCloseable{
         PrintWriter pw = new PrintWriter(new FileWriter(failinimi, true));
         pw.println(rida);
         pw.close();
-    }
-
-    @Override
-    public void close() throws Exception {
-        System.out.println("sulgen faili");
     }
 
 }
